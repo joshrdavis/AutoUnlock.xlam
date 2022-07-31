@@ -1,16 +1,11 @@
 Option Explicit
 
 Private Const PAGE_EXECUTE_READWRITE = &H40
-Private Declare PtrSafe Sub MoveMemory Lib "kernel32" Alias "RtlMoveMemory" _
-(Destination As LongPtr, Source As LongPtr, ByVal Length As LongPtr)
-Private Declare PtrSafe Function VirtualProtect Lib "kernel32" (lpAddress As LongPtr, _
-ByVal dwSize As LongPtr, ByVal flNewProtect As LongPtr, lpflOldProtect As LongPtr) As LongPtr
+Private Declare PtrSafe Sub MoveMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As LongPtr, Source As LongPtr, ByVal Length As LongPtr)
+Private Declare PtrSafe Function VirtualProtect Lib "kernel32" (lpAddress As LongPtr, ByVal dwSize As LongPtr, ByVal flNewProtect As LongPtr, lpflOldProtect As LongPtr) As LongPtr
 Private Declare PtrSafe Function GetModuleHandleA Lib "kernel32" (ByVal lpModuleName As String) As LongPtr
-Private Declare PtrSafe Function GetProcAddress Lib "kernel32" (ByVal hModule As LongPtr, _
-ByVal lpProcName As String) As LongPtr
-Private Declare PtrSafe Function DialogBoxParam Lib "user32" Alias "DialogBoxParamA" (ByVal hInstance As LongPtr, _
-ByVal pTemplateName As LongPtr, ByVal hWndParent As LongPtr, _
-ByVal lpDialogFunc As LongPtr, ByVal dwInitParam As LongPtr) As Integer
+Private Declare PtrSafe Function GetProcAddress Lib "kernel32" (ByVal hModule As LongPtr, ByVal lpProcName As String) As LongPtr
+Private Declare PtrSafe Function DialogBoxParam Lib "user32" Alias "DialogBoxParamA" (ByVal hInstance As LongPtr, ByVal pTemplateName As LongPtr, ByVal hWndParent As LongPtr, ByVal lpDialogFunc As LongPtr, ByVal dwInitParam As LongPtr) As Integer
 Private HookBytes(0 To 11) As Byte
 Private OriginBytes(0 To 11) As Byte
 Private pFunc As LongPtr
